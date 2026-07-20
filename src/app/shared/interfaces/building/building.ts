@@ -3,7 +3,7 @@ import { Level } from "./level";
 import { Load } from "./loads";
 import { Material } from "./material";
 import { Project } from "./project";
-import { Section } from "./serctions";
+import { Section } from "./sections";
 import { BuildingSettings } from "./settings";
 import { Support } from "./supports";
 

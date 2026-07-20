@@ -1,23 +1,33 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { AIRequest } from '../interfaces/cad/ai-request';
 import { AIResponse } from '../interfaces/cad/ai-response';
+
+const APIPREFIX_AI = `${environment.aiUrl}/ai`;
 
 @Injectable({
   providedIn: 'root'
 })
 export class AgentService {
 
-  constructor(private http: HttpClient) {}
+  http = inject(HttpClient);
 
-  execute(request: AIRequest): Observable<AIResponse> {
-
+  agent(request: AIRequest): Observable<AIResponse> {
+    console.log(request);
     return this.http.post<AIResponse>(
-      "http://localhost:5000/agent",
+      `${APIPREFIX_AI}/agent`,
       request
     );
+  }
 
+  execute(request: AIRequest): Observable<AIResponse> {
+    console.log(request);
+    return this.http.post<AIResponse>(
+      `${APIPREFIX_AI}/execute`,
+      request
+    );
   }
 
 }

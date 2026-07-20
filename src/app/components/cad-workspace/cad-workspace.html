@@ -11,7 +11,7 @@
         <button class="bg-primary-container hover:bg-primary text-white font-label-md px-2 py-2 rounded-lg transition-all active:scale-95" (click)="onToggleWireframe()">Wireframe</button>
         <button class="bg-primary-container hover:bg-primary text-white font-label-md px-2 py-2 rounded-lg transition-all active:scale-95" (click)="onRebuild()">Rebuild Structure</button>
       </div>
-      <div class="w-3/4 h-full rounded-xl border border-primary/20 backdrop-blur-sm shadow-2xl relative">
+      <div class="w-3/4 rounded-xl border border-primary/20 backdrop-blur-sm shadow-2xl relative">
         <div id="renderer-container" style="width: 100%; height: 500px; position: relative;"></div>
       </div>
       <div class="flex flex-row items-center justify-center gap-5 mt-5">
@@ -49,18 +49,23 @@
     </div>
     <!-- Command Input Field (Bottom) -->
     <div class="w-full max-w-4xl mx-auto px-6 mb-12 mt-5">
+
       <div class="relative group">
+        <form [formGroup]="form">
         <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
           <span class="material-symbols-outlined text-primary-fixed-dim">terminal</span>
         </div>
         <input
           class="w-full bg-black/80 border-2 border-primary-container/30 text-primary-fixed-dim rounded-xl py-4 pl-12 pr-4 focus:border-primary focus:ring-0 font-label-md placeholder:text-outline-variant/50 transition-all"
-          placeholder="Enter CAD command or prompt (e.g., 'Modify pylon offset 20mm')..." type="text">
+          placeholder="Enter CAD command or prompt (e.g., 'Modify pylon offset 20mm')..." type="text"
+          formControlName="chatAI">
         <div class="absolute inset-y-0 right-2 flex items-center">
           <button
-            class="bg-primary-container hover:bg-primary text-white font-label-md px-6 py-2 rounded-lg transition-all active:scale-95">RUN</button>
+            class="bg-primary-container hover:bg-primary text-white font-label-md px-6 py-2 rounded-lg transition-all active:scale-95" (click)="send()">RUN</button>
         </div>
+        </form>
       </div>
+
     </div>
   </section>
   <app-right-sidebar></app-right-sidebar>

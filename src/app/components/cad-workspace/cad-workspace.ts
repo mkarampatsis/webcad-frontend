@@ -9,10 +9,11 @@ import { AgentService } from 'src/app/shared/services/agent.service';
 import { BuildingStateService } from 'src/app/shared/services/building-state.service';
 import { OperationExecutorService } from 'src/app/shared/services/operation-executor.service';
 import { SkyCivBuilderService } from 'src/app/shared/services/skyciv-builder.service';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-cad-workspace',
-  imports: [LeftSidebar, RightSidebar],
+  imports: [LeftSidebar, RightSidebar, ReactiveFormsModule],
   templateUrl: './cad-workspace.html',
   styleUrl: './cad-workspace.css',
 })
@@ -28,6 +29,10 @@ export class CadWorkspace implements AfterViewInit {
 
   private viewer: any;
   private prompt: string = '';
+
+  form = new FormGroup({
+    chatAI: new FormControl(null),
+  });
 
   async ngAfterViewInit(): Promise<void> {
     this.viewer = await this.skyCivInitializationService.createViewer({
@@ -114,6 +119,7 @@ export class CadWorkspace implements AfterViewInit {
   }
 
   send() {
+    this.prompt = this.form.controls.chatAI.value!;
     const request: AIRequest = {
       prompt: this.prompt,
       building: this.buildingStateService.building,
