@@ -1,0 +1,129 @@
+<main class="ml-12 mr-12 min-h-[calc(100vh-64px-64px)] p-gutter flex flex-col items-center bg-white">
+  <div class="w-full max-w-6xl mt-8">
+    <div class="mb-12 text-center md:text-left">
+      <h1 class="font-display-lg text-display-lg text-on-surface mb-2">Technical Support &amp; Inquiries</h1>
+      <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Connect with our structural engineering
+        team for consultation, technical data requests, or project-specific coordination regarding Metro-Bridge
+        foundation protocols.</p>
+    </div>
+    <!-- Bento Layout for Form and Details -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+      <!-- Contact Form Section -->
+      <div class="lg:col-span-7 bg-surface-bright border border-outline-variant rounded-lg p-8 shadow-sm">
+        <form class="space-y-6" id="contactForm">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+            <div class="flex flex-col gap-2">
+              <label class="font-label-sm text-label-sm text-on-surface-variant uppercase" for="name">Full Name</label>
+              <input
+                class="font-label-md text-label-md border-outline-variant focus:ring-2 focus:ring-primary focus:border-primary px-3 py-2 rounded-sm bg-white"
+                id="name" placeholder="e.g. John Doe" required="" type="text" />
+            </div>
+            <div class="flex flex-col gap-2">
+              <label class="font-label-sm text-label-sm text-on-surface-variant uppercase" for="email">Email
+                Address</label>
+              <input
+                class="font-label-md text-label-md border-outline-variant focus:ring-2 focus:ring-primary focus:border-primary px-3 py-2 rounded-sm bg-white"
+                id="email" placeholder="engineer@firm.com" required="" type="email" />
+            </div>
+          </div>
+          <div class="flex flex-col gap-2">
+            <label class="font-label-sm text-label-sm text-on-surface-variant uppercase" for="subject">Subject
+              Inquiry</label>
+            <select
+              class="font-label-md text-label-md border-outline-variant focus:ring-2 focus:ring-primary focus:border-primary px-3 py-2 rounded-sm bg-white"
+              id="subject">
+              <option>Technical Specification Request</option>
+              <option>Foundation Integrity Report</option>
+              <option>CAD Interoperability Issue</option>
+              <option>Project Coordination Meeting</option>
+              <option>Other Inquiry</option>
+            </select>
+          </div>
+          <div class="flex flex-col gap-2">
+            <label class="font-label-sm text-label-sm text-on-surface-variant uppercase" for="message">Detailed
+              Message</label>
+            <textarea
+              class="font-label-md text-label-md border-outline-variant focus:ring-2 focus:ring-primary focus:border-primary px-3 py-2 rounded-sm bg-white resize-none"
+              id="message" placeholder="Please provide specific project IDs or technical parameters..." required=""
+              rows="6"></textarea>
+          </div>
+          <div class="flex items-center gap-4 pt-2">
+            <button
+              class="bg-primary hover:bg-on-primary-fixed-variant text-white font-label-md text-label-md px-8 py-3 rounded-sm transition-all flex items-center gap-2 group active:scale-95"
+              type="submit">
+              Send Message
+              <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform"
+                data-icon="send">send</span>
+            </button>
+            <span class="hidden font-label-sm text-label-sm text-tertiary-container animate-pulse"
+              id="formStatus">Processing request...</span>
+          </div>
+        </form>
+      </div>
+      <!-- Info Sidebar -->
+      <div class="lg:col-span-5 flex flex-col gap-gutter">
+        <!-- Location Card -->
+        <div class="bg-white border border-outline-variant rounded-lg overflow-hidden flex flex-col">
+          <div class="h-48 relative">
+            <div class="absolute inset-0 bg-secondary-container" data-location="Chicago, USA"
+              style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDwm-vQlBzSKmZkggEAaZyOBSjitK_MbZqz2me2nz8X9WNJkFiwX185oJoeCiAuQyrWEec1amIvBtIVPyopASLMq42DjAsq_v5_NQvK7IkQVvq6Ws-fwbK88lGZ_LxhGAKX9gDBA0OYjF1x3a5APU1yWTSMLYJZmhbN2KDabHC8zoc2SDqrVeC0P6gbf9EXY1RO3zFvufDlmjGoeVZofbm5Vwg-jyNBinu2Y2lfq_VKSScTjT-Tkni_N8zu2yiCtWKDTT3P1B0zu8s')">
+            </div>
+            <div
+              class="absolute bottom-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 border border-outline-variant rounded-sm shadow-sm">
+              <span class="font-label-sm text-label-sm text-on-surface font-bold">HQ: Chicago Engineering Hub</span>
+            </div>
+          </div>
+          <div class="p-6 space-y-4">
+            <div class="flex items-start gap-4">
+              <span class="material-symbols-outlined text-primary" data-icon="location_on">location_on</span>
+              <div>
+                <span class="block font-label-sm text-label-sm text-on-surface-variant uppercase mb-1">Office
+                  Address</span>
+                <p class="font-body-md text-body-md text-on-surface">233 S Wacker Dr, Floor 44<br />Chicago, IL 60606,
+                  United States</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <span class="material-symbols-outlined text-primary" data-icon="schedule">schedule</span>
+              <div>
+                <span class="block font-label-sm text-label-sm text-on-surface-variant uppercase mb-1">Operational
+                  Hours</span>
+                <p class="font-body-md text-body-md text-on-surface">Mon - Fri: 08:00 - 18:00 CST<br />Sat - Sun:
+                  Emergency Support Only</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <span class="material-symbols-outlined text-primary" data-icon="call">call</span>
+              <div>
+                <span class="block font-label-sm text-label-sm text-on-surface-variant uppercase mb-1">Direct
+                  Lines</span>
+                <p class="font-body-md text-body-md text-on-surface">+1 (312) 555-0198 (Technical Support)<br />+1 (312)
+                  555-0199 (Administrative)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Status Chips Section -->
+        <div class="bg-surface-container-low border border-outline-variant rounded-lg p-6">
+          <span class="block font-label-sm text-label-sm text-on-surface-variant uppercase mb-4">System Status</span>
+          <div class="flex flex-wrap gap-2">
+            <div
+              class="flex items-center gap-2 px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed rounded-sm border border-tertiary-container">
+              <div class="w-2 h-2 rounded-full bg-tertiary animate-ping"></div>
+              <span class="font-label-md text-label-md">Support Online</span>
+            </div>
+            <div
+              class="flex items-center gap-2 px-3 py-1 bg-surface-container-highest text-on-surface-variant rounded-sm border border-outline-variant">
+              <span class="material-symbols-outlined text-[14px]" data-icon="verified">verified</span>
+              <span class="font-label-md text-label-md">Verified Precision</span>
+            </div>
+            <div
+              class="flex items-center gap-2 px-3 py-1 bg-secondary-fixed text-on-secondary-fixed-variant rounded-sm border border-outline-variant">
+              <span class="font-label-md text-label-md">CAD Suite v4.2</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

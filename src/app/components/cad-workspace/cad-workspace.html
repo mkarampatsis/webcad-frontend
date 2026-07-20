@@ -1,0 +1,67 @@
+<main class="relative min-h-[calc(100vh-64px)] w-full flex">
+  <app-left-sidebar></app-left-sidebar>
+  <!-- Main Canvas Area -->
+  <section class="flex-1 canvas-container relative flex flex-col">
+    <!-- 3D Structural Model Placeholder -->
+    <div class="relative w-full h-full flex flex-col items-center justify-center mt-5">
+      <div class="flex flex-row items-center justify-items-center gap-5 mb-5">
+        <button class="bg-primary-container hover:bg-primary text-white font-label-md px-2 py-2 rounded-lg transition-all active:scale-95" (click)="onRender()">Render</button>
+        <button class="bg-primary-container hover:bg-primary text-white font-label-md px-2 py-2 rounded-lg transition-all active:scale-95" (click)="onFitView()">Fit View</button>
+        <button class="bg-primary-container hover:bg-primary text-white font-label-md px-2 py-2 rounded-lg transition-all active:scale-95" (click)="onResetCamera()">Reset Camera</button>
+        <button class="bg-primary-container hover:bg-primary text-white font-label-md px-2 py-2 rounded-lg transition-all active:scale-95" (click)="onToggleWireframe()">Wireframe</button>
+        <button class="bg-primary-container hover:bg-primary text-white font-label-md px-2 py-2 rounded-lg transition-all active:scale-95" (click)="onRebuild()">Rebuild Structure</button>
+      </div>
+      <div class="w-3/4 h-full rounded-xl border border-primary/20 backdrop-blur-sm shadow-2xl relative">
+        <div id="renderer-container" style="width: 100%; height: 500px; position: relative;"></div>
+      </div>
+      <div class="flex flex-row items-center justify-center gap-5 mt-5">
+        <button class="bg-primary-container hover:bg-primary text-white font-label-md px-2 py-2 rounded-lg transition-all active:scale-95" (click)="onSave()">Save Model</button>
+
+        <label class="bg-primary-container hover:bg-primary text-white font-label-md px-2 py-2 rounded-lg transition-all active:scale-95">
+          Load Model
+          <input type="file" accept=".json" (change)="onLoad($event)" hidden />
+        </label>
+      </div>
+      <!-- Bento Grid Data Overlays -->
+      <div class="mt-5 grid grid-cols-1 md:grid-cols-3 gap-gutter px-gutter w-full max-w-5xl">
+        <div class="bg-white/5 border border-white/10 p-4 rounded-lg backdrop-blur-md">
+          <p class="font-label-sm text-outline-variant uppercase mb-1">Stress Threshold</p>
+          <p class="font-headline-sm text-primary-fixed-dim">12.4 kN/m²</p>
+          <div class="w-full bg-white/10 h-1 mt-3 rounded-full overflow-hidden">
+            <div class="bg-primary w-[45%] h-full"></div>
+          </div>
+        </div>
+        <div class="bg-white/5 border border-white/10 p-4 rounded-lg backdrop-blur-md">
+          <p class="font-label-sm text-outline-variant uppercase mb-1">Load Balance</p>
+          <p class="font-headline-sm text-primary-fixed-dim">Optimal</p>
+          <div class="w-full bg-white/10 h-1 mt-3 rounded-full overflow-hidden">
+            <div class="bg-tertiary-fixed-dim w-[88%] h-full"></div>
+          </div>
+        </div>
+        <div class="bg-white/5 border border-white/10 p-4 rounded-lg backdrop-blur-md">
+          <p class="font-label-sm text-outline-variant uppercase mb-1">Curing State</p>
+          <p class="font-headline-sm text-primary-fixed-dim">94% Complete</p>
+          <div class="w-full bg-white/10 h-1 mt-3 rounded-full overflow-hidden">
+            <div class="bg-secondary-fixed-dim w-[94%] h-full"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Command Input Field (Bottom) -->
+    <div class="w-full max-w-4xl mx-auto px-6 mb-12 mt-5">
+      <div class="relative group">
+        <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+          <span class="material-symbols-outlined text-primary-fixed-dim">terminal</span>
+        </div>
+        <input
+          class="w-full bg-black/80 border-2 border-primary-container/30 text-primary-fixed-dim rounded-xl py-4 pl-12 pr-4 focus:border-primary focus:ring-0 font-label-md placeholder:text-outline-variant/50 transition-all"
+          placeholder="Enter CAD command or prompt (e.g., 'Modify pylon offset 20mm')..." type="text">
+        <div class="absolute inset-y-0 right-2 flex items-center">
+          <button
+            class="bg-primary-container hover:bg-primary text-white font-label-md px-6 py-2 rounded-lg transition-all active:scale-95">RUN</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <app-right-sidebar></app-right-sidebar>
+</main>

@@ -1,0 +1,34 @@
+import { 
+  ApplicationConfig, 
+  provideBrowserGlobalErrorListeners,
+  // provideZoneChangeDetection,
+  // LOCALE_ID
+} from '@angular/core';
+// import { registerLocaleData } from '@angular/common';
+// import localeEl from '@angular/common/locales/el';
+import { provideRouter } from '@angular/router';
+
+import { routes } from './app.routes';
+// import { provideNgtRenderer } from 'angular-three/dom';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
+import { AuthInterceptorService } from 'src/app/shared/services/auth-interceptor'
+import { BackendInterceptor } from 'src/app/shared/services/backend-interceptor.service'
+
+// registerLocaleData(localeEl, 'el-GR');
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideBrowserGlobalErrorListeners(),
+    provideRouter(routes),
+    provideHttpClient(withInterceptorsFromDi()),
+    // provideZoneChangeDetection({ eventCoalescing: true }),
+    // provideNgtRenderer(),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    },
+    { provide: HTTP_INTERCEPTORS, useClass: BackendInterceptor, multi: true },
+    // { provide: LOCALE_ID, useValue: 'el-GR' },
+  ]
+};

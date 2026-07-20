@@ -1,0 +1,33 @@
+<!-- <div class="float-right z-3">
+    @for (toast of toastService.toasts(); track toast) {
+        <ngb-toast
+            [class]="toast.classname"
+            [autohide]="true"
+            [delay]="toast.delay || 5000"
+            (hidden)="toastService.remove(toast)"
+        >
+            <div class="text-center">
+                <ng-container
+                    [ngComponentOutlet]="toast.component ?? null"
+                    [ngComponentOutletInputs]="toast.inputs"
+                ></ng-container>
+            </div>
+        </ngb-toast>
+    }
+</div> -->
+
+<div class="fixed right-0 top-[75px] z-[1200] p-3 space-y-3">
+  @for (toast of toastService.toasts(); track toast) {
+    <div
+      class="rounded-lg shadow-md border border-outline-variant bg-surface-container-low text-on-surface px-4 py-3 transition-all duration-300"
+      [class]="toast.classname"
+    >
+      <div class="text-center">
+        <ng-container
+          [ngComponentOutlet]="toast.component ?? null"
+          [ngComponentOutletInputs]="toast.inputs"
+        ></ng-container>
+      </div>
+    </div>
+  }
+</div>

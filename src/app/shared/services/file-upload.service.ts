@@ -1,0 +1,36 @@
+import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpRequest, HttpEvent, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+import { environment } from 'src/environments/environment';
+
+const APIPREFIX = `${environment.apiURL}`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class FileUploadService {
+  http = inject(HttpClient);
+
+  upload(file: File, email:string): Observable<HttpEvent<any>> {
+    const formData: FormData = new FormData();
+
+    formData.append('file', file);
+
+    const req = new HttpRequest('POST', `${APIPREFIX}/upload/${email}`, formData, {
+      reportProgress: true,
+      responseType: 'json',
+    });
+
+    return this.http.request(req);
+  }
+
+  getFiles(email:string | undefined): Observable<any> {
+    return this.http.get(`${APIPREFIX}/upload/getfiles/${email}`);
+  }
+
+  getUploadByID(id: string): Observable<Blob> {
+    const headers = new HttpHeaders().set('Accept', 'application/pdf');
+    return this.http.get(`${APIPREFIX}/upload/${id}`, { headers, responseType: 'blob' });
+  }
+}

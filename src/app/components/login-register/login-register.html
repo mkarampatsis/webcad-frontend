@@ -1,0 +1,145 @@
+<main class="flex-grow flex items-center justify-center p-gutter relative overflow-hidden">
+  <!-- Technical Background Decoration -->
+  <div class="absolute inset-0 pointer-events-none opacity-[0.03] overflow-hidden">
+    <div class="absolute top-0 left-0 w-full h-full"
+      style="background-image: radial-gradient(#0057cd 1px, transparent 1px); background-size: 32px 32px;"></div>
+  </div>
+  <div class="w-full max-w-md z-10">
+    <!-- Auth Container -->
+    <div class="auth-card bg-surface-container-lowest rounded-lg p-8">
+      <!-- View Toggle Tabs -->
+      <div class="flex border-b border-outline-variant mb-8">
+        <button
+          class="flex-1 pb-4 font-label-md text-label-md transition-colors duration-200 border-b-2 border-primary text-primary font-bold"
+          id="btn-login" onclick="switchView('login')">
+          LOG IN
+        </button>
+        <button
+          class="flex-1 pb-4 font-label-md text-label-md transition-colors duration-200 border-b-2 border-transparent text-secondary hover:text-primary"
+          id="btn-register" onclick="switchView('register')">
+          REGISTER
+        </button>
+      </div>
+      <!-- Login View -->
+      <div class="transition-view active-view" id="login-view">
+        <div class="mb-6">
+          <h2 class="font-headline-md text-headline-md text-on-surface mb-2">Welcome Back</h2>
+          <p class="text-secondary font-body-md">Enter your engineering credentials to access the workspace.</p>
+        </div>
+        <form class="space-y-4" onsubmit="event.preventDefault();">
+          <div>
+            <label class="block font-label-sm text-label-sm text-secondary uppercase mb-1">Professional Email</label>
+            <input
+              class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant rounded font-label-md focus:ring-0"
+              placeholder="engineer@metro-bridge.com" type="email" />
+          </div>
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <label class="block font-label-sm text-label-sm text-secondary uppercase">Access Key</label>
+              <a class="text-primary font-label-sm text-label-sm hover:underline" href="#">FORGOT PASSWORD?</a>
+            </div>
+            <input
+              class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant rounded font-label-md focus:ring-0"
+              placeholder="••••••••" type="password" />
+          </div>
+          <div class="flex items-center gap-2 pt-2">
+            <input class="w-4 h-4 text-primary border-outline-variant rounded focus:ring-primary" id="remember"
+              type="checkbox" />
+            <label class="font-label-md text-label-md text-on-surface-variant" for="remember">Keep me authenticated for
+              24 hours</label>
+          </div>
+          <button
+            class="w-full py-3 bg-primary-container text-on-primary font-headline-sm text-headline-sm rounded-lg hover:bg-[#004bb1] active:opacity-90 transition-all mt-4"
+            type="submit">
+            SECURE LOGIN
+          </button>
+        </form>
+      </div>
+      <!-- Register View -->
+      <div class="transition-view hidden-view" id="register-view">
+        <div class="mb-6">
+          <h2 class="font-headline-md text-headline-md text-on-surface mb-2">New Account</h2>
+          <p class="text-secondary font-body-md">Register your technical profile for the bridge structural foundation
+            suite.</p>
+        </div>
+        <form class="space-y-4" onsubmit="event.preventDefault();">
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block font-label-sm text-label-sm text-secondary uppercase mb-1">First Name</label>
+              <input
+                class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant rounded font-label-md focus:ring-0"
+                type="text" />
+            </div>
+            <div>
+              <label class="block font-label-sm text-label-sm text-secondary uppercase mb-1">Last Name</label>
+              <input
+                class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant rounded font-label-md focus:ring-0"
+                type="text" />
+            </div>
+          </div>
+          <div>
+            <label class="block font-label-sm text-label-sm text-secondary uppercase mb-1">Corporate Email</label>
+            <input
+              class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant rounded font-label-md focus:ring-0"
+              placeholder="name@company.com" type="email" />
+          </div>
+          <div>
+            <label class="block font-label-sm text-label-sm text-secondary uppercase mb-1">Create Access Key</label>
+            <input
+              class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant rounded font-label-md focus:ring-0"
+              placeholder="••••••••" type="password" />
+          </div>
+          <div class="text-[11px] text-secondary leading-relaxed pt-2">
+            By clicking Register, you agree to our <a class="text-primary hover:underline" href="#">Terms of Engineering
+              Service</a> and <a class="text-primary hover:underline" href="#">Data Integrity Protocol</a>.
+          </div>
+          <button
+            class="w-full py-3 bg-primary-container text-on-primary font-headline-sm text-headline-sm rounded-lg hover:bg-[#004bb1] active:opacity-90 transition-all mt-4"
+            type="submit">
+            CREATE PROFILE
+          </button>
+        </form>
+      </div>
+      <!-- Social Authentication -->
+      <div class="mt-8">
+        <div class="relative flex items-center mb-6">
+          <div class="flex-grow border-t border-outline-variant"></div>
+          <span class="flex-shrink mx-4 font-label-sm text-label-sm text-secondary uppercase">Unified SSO</span>
+          <div class="flex-grow border-t border-outline-variant"></div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <button
+            class="flex items-center justify-center gap-2 py-2.5 px-4 border border-outline-variant rounded hover:bg-surface-container-high transition-colors text-on-surface font-label-md text-label-md">
+            <span class="material-symbols-outlined text-lg" data-icon="cloud">cloud</span>
+            Microsoft
+          </button>
+          <button
+            class="flex items-center justify-center gap-2 py-2.5 px-4 border border-outline-variant rounded hover:bg-surface-container-high transition-colors text-on-surface font-label-md text-label-md">
+            <span class="material-symbols-outlined text-lg" data-icon="terminal">terminal</span>
+            GitHub
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Context Info -->
+    <div class="mt-8 flex flex-col items-center gap-4">
+      <div class="flex items-center gap-2 text-secondary opacity-60">
+        <span class="material-symbols-outlined text-sm" data-icon="lock">lock</span>
+        <span class="font-label-sm text-label-sm">AES-256 ENCRYPTED CHANNEL</span>
+      </div>
+      <div class="flex items-center gap-6">
+        <div
+          class="w-12 h-12 rounded-full overflow-hidden border border-outline-variant bg-surface-container-high flex items-center justify-center">
+          <img class="w-full h-full object-cover"
+            data-alt="A portrait of a senior civil engineer wearing a hard hat, with a blueprint in the background, in a professional and technical photography style, using soft blue and white lighting to match a modern corporate aesthetic."
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDwy3ZYpMuPJREJzQ19V8u2DXUMbEcLwGNSBNsOYiixnaQNGDQiYwqPEOlfwzwLiAv1AuobYDeIcWdj879-G_AtyYospyWqmcwI45JWjzDLjocKYLmag9WWVd0qGDh7IzsxxDM3a521hv3nm5DSEzour33QVXEJxFymyGU70ubb9dPbD32Ui_ZASRp1-AygJ3uV_J3Dh-TKcU4SOKAwqa7pYlQri8s3yhbHhplb_3aXMtfU0haF9CHpM8a_gw_K-gNIiP3qnZxPn0" />
+        </div>
+        <div class="text-left">
+          <p class="font-label-md text-label-md text-on-surface">"Precision and stability are the pillars of
+            Metro-Bridge architecture."</p>
+          <p class="font-label-sm text-label-sm text-secondary uppercase">— Marcus V., Lead Structural Engineer</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
