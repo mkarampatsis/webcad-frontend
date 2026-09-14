@@ -10,7 +10,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "deploy-test": "ng build && ssh oceanos 'rm -rf ~/webcad-frontend/*' && rsync -avz dist/webcad-frontend/browser/ oceanos:~/webcad-frontend/"
   },
   "private": true,
   "packageManager": "npm@11.13.0",
