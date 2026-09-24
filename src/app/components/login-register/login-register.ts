@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { 
   ReactiveFormsModule, 
   FormControl, 
@@ -13,10 +14,11 @@ declare let google: any;
 
 @Component({
   selector: 'app-login-register',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './login-register.html',
   styleUrl: './login-register.css',
 })
+
 export class LoginRegister {
   authService = inject(AuthService);
   userService = inject(UserService);
@@ -39,19 +41,38 @@ export class LoginRegister {
     this.passwordMatchValidator
   );
 
-  ngOnInit() {
-    google = this.authService.initializeGoogleSignIn();
+  // ngOnInit() {
+  //   google = this.authService.initializeGoogleSignIn();
 
-    google.accounts.id.renderButton(
-      document.getElementById("googleBtn"),
-      { 
-        theme: "outline", 
-        size: "large", 
-        shape: "rectangular", 
-        logo_alignment: "center",
-        width: "50%" 
-      }
-    );
+  //   google.accounts.id.renderButton(
+  //     document.getElementById("googleBtn"),
+  //     { 
+  //       theme: "outline", 
+  //       size: "large", 
+  //       shape: "rectangular", 
+  //       logo_alignment: "center",
+  //       width: "50%" 
+  //     }
+  //   );
+  // }
+
+  async ngOnInit() {
+    const google = await this.authService.initializeGoogleSignIn();
+
+    const googleButton = document.getElementById('googleBtn');
+
+    if (googleButton) {
+      google.accounts.id.renderButton(
+        googleButton,
+        {
+          theme: 'outline',
+          size: 'large',
+          shape: 'rectangular',
+          logo_alignment: 'center',
+          width: 400
+        }
+      );
+    }
   }
 
   passwordMatchValidator(control: AbstractControl): { [key: string]: boolean } | null {
@@ -116,4 +137,13 @@ export class LoginRegister {
     this.signUpForm.reset();
     this.newUser = false;
   }
+
+  switchView(viewType: 'login' | 'signup') {
+    this.newUser = viewType === 'signup';
+    console.log(`Switched to ${viewType} view. newUser is now:`, this.newUser);
+  }
+
+  // toggleView() {
+  //   this.newUser = !this.newUser;
+  // }
 }

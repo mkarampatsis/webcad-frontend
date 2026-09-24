@@ -10,96 +10,118 @@
       <!-- View Toggle Tabs -->
       <div class="flex border-b border-outline-variant mb-8">
         <button
-          class="flex-1 pb-4 font-label-md text-label-md transition-colors duration-200 border-b-2 border-primary text-primary font-bold"
-          id="btn-login" onclick="switchView('login')">
+          class="flex-1 pb-4 font-label-md text-label-md transition-colors duration-200 cursor-pointer"
+          (click)="switchView('login')"
+          [class.border-primary]="!newUser"
+          [class.border-b-2]="!newUser"
+          [class.border-transparent]="newUser"
+          [class.text-primary]="!newUser"
+          [class.text-secondary]="newUser"
+          [class.hover:text-primary]="newUser"
+          [class.font-bold]="!newUser"
+        >
           LOG IN
         </button>
         <button
-          class="flex-1 pb-4 font-label-md text-label-md transition-colors duration-200 border-b-2 border-transparent text-secondary hover:text-primary"
-          id="btn-register" onclick="switchView('register')">
+          class="flex-1 pb-4 font-label-md text-label-md transition-colors duration-200 cursor-pointer"
+          (click)="switchView('signup')"
+          [class.border-primary]="newUser"
+          [class.border-b-2]="newUser"
+          [class.border-transparent]="!newUser"
+          [class.text-primary]="newUser"
+          [class.text-secondary]="!newUser"
+          [class.hover:text-primary]="!newUser"
+          [class.font-bold]="newUser"
+        >
           REGISTER
         </button>
       </div>
       <!-- Login View -->
-      <div class="transition-view active-view" id="login-view">
-        <div class="mb-6">
-          <h2 class="font-headline-md text-headline-md text-on-surface mb-2">Welcome Back</h2>
-          <p class="text-secondary font-body-md">Enter your engineering credentials to access the workspace.</p>
-        </div>
-        <form class="space-y-4" onsubmit="event.preventDefault();">
-          <div>
-            <label class="block font-label-sm text-label-sm text-secondary uppercase mb-1">Professional Email</label>
-            <input
-              class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant rounded font-label-md focus:ring-0"
-              placeholder="engineer@metro-bridge.com" type="email" />
+      @if (!newUser) {
+        <div class="transition-view active-view" id="login-view">
+          <div class="mb-6">
+            <h2 class="font-headline-md text-headline-md text-on-surface mb-2">Welcome Back</h2>
+            <p class="text-secondary font-body-md">Enter your credentials to access the workspace.</p>
           </div>
-          <div>
-            <div class="flex justify-between items-center mb-1">
-              <label class="block font-label-sm text-label-sm text-secondary uppercase">Access Key</label>
-              <a class="text-primary font-label-sm text-label-sm hover:underline" href="#">FORGOT PASSWORD?</a>
-            </div>
-            <input
-              class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant rounded font-label-md focus:ring-0"
-              placeholder="••••••••" type="password" />
-          </div>
-          <div class="flex items-center gap-2 pt-2">
-            <input class="w-4 h-4 text-primary border-outline-variant rounded focus:ring-primary" id="remember"
-              type="checkbox" />
-            <label class="font-label-md text-label-md text-on-surface-variant" for="remember">Keep me authenticated for
-              24 hours</label>
-          </div>
-          <button
-            class="w-full py-3 bg-primary-container text-on-primary font-headline-sm text-headline-sm rounded-lg hover:bg-[#004bb1] active:opacity-90 transition-all mt-4"
-            type="submit">
-            SECURE LOGIN
-          </button>
-        </form>
-      </div>
-      <!-- Register View -->
-      <div class="transition-view hidden-view" id="register-view">
-        <div class="mb-6">
-          <h2 class="font-headline-md text-headline-md text-on-surface mb-2">New Account</h2>
-          <p class="text-secondary font-body-md">Register your technical profile for the bridge structural foundation
-            suite.</p>
-        </div>
-        <form class="space-y-4" onsubmit="event.preventDefault();">
-          <div class="grid grid-cols-2 gap-4">
+          <form class="space-y-4" onsubmit="event.preventDefault();">
             <div>
-              <label class="block font-label-sm text-label-sm text-secondary uppercase mb-1">First Name</label>
+              <label class="block font-label-sm text-label-sm text-secondary uppercase mb-1">Email</label>
               <input
                 class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant rounded font-label-md focus:ring-0"
-                type="text" />
+                placeholder="engineer@metro-bridge.com" type="email" />
             </div>
             <div>
-              <label class="block font-label-sm text-label-sm text-secondary uppercase mb-1">Last Name</label>
+              <div class="flex justify-between items-center mb-1">
+                <label class="block font-label-sm text-label-sm text-secondary uppercase">Password</label>
+                <a class="text-primary font-label-sm text-label-sm hover:underline" href="#">FORGOT PASSWORD?</a>
+              </div>
               <input
                 class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant rounded font-label-md focus:ring-0"
-                type="text" />
+                placeholder="••••••••" type="password" />
             </div>
+            <!-- <div class="flex items-center gap-2 pt-2">
+              <input class="w-4 h-4 text-primary border-outline-variant rounded focus:ring-primary" id="remember"
+                type="checkbox" />
+              <label class="font-label-md text-label-md text-on-surface-variant" for="remember">Keep me authenticated for
+                24 hours</label>
+            </div> -->
+            <!-- <button
+              class="w-full py-3 bg-primary-container text-on-primary font-headline-sm text-headline-sm rounded-lg hover:bg-[#004bb1] active:opacity-90 transition-all mt-4"
+              type="submit">
+              SECURE LOGIN
+            </button> -->
+            <div class="w-50 mx-auto mt-4">
+              <div id="googleBtn"></div>
+            </div>
+          </form>
+        </div>
+      } @else {
+        <!-- Register View -->
+        <div class="transition-view hidden-view" id="register-view">
+          <div class="mb-6">
+            <h2 class="font-headline-md text-headline-md text-on-surface mb-2">New Account</h2>
+            <p class="text-secondary font-body-md">Register your technical profile for the bridge structural foundation
+              suite.</p>
           </div>
-          <div>
-            <label class="block font-label-sm text-label-sm text-secondary uppercase mb-1">Corporate Email</label>
-            <input
-              class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant rounded font-label-md focus:ring-0"
-              placeholder="name@company.com" type="email" />
-          </div>
-          <div>
-            <label class="block font-label-sm text-label-sm text-secondary uppercase mb-1">Create Access Key</label>
-            <input
-              class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant rounded font-label-md focus:ring-0"
-              placeholder="••••••••" type="password" />
-          </div>
-          <div class="text-[11px] text-secondary leading-relaxed pt-2">
-            By clicking Register, you agree to our <a class="text-primary hover:underline" href="#">Terms of Engineering
-              Service</a> and <a class="text-primary hover:underline" href="#">Data Integrity Protocol</a>.
-          </div>
-          <button
-            class="w-full py-3 bg-primary-container text-on-primary font-headline-sm text-headline-sm rounded-lg hover:bg-[#004bb1] active:opacity-90 transition-all mt-4"
-            type="submit">
-            CREATE PROFILE
-          </button>
-        </form>
-      </div>
+          <form class="space-y-4" onsubmit="event.preventDefault();">
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="block font-label-sm text-label-sm text-secondary uppercase mb-1">First Name</label>
+                <input
+                  class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant rounded font-label-md focus:ring-0"
+                  type="text" />
+              </div>
+              <div>
+                <label class="block font-label-sm text-label-sm text-secondary uppercase mb-1">Last Name</label>
+                <input
+                  class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant rounded font-label-md focus:ring-0"
+                  type="text" />
+              </div>
+            </div>
+            <div>
+              <label class="block font-label-sm text-label-sm text-secondary uppercase mb-1">Corporate Email</label>
+              <input
+                class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant rounded font-label-md focus:ring-0"
+                placeholder="name@company.com" type="email" />
+            </div>
+            <div>
+              <label class="block font-label-sm text-label-sm text-secondary uppercase mb-1">Create Access Key</label>
+              <input
+                class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant rounded font-label-md focus:ring-0"
+                placeholder="••••••••" type="password" />
+            </div>
+            <div class="text-[11px] text-secondary leading-relaxed pt-2">
+              By clicking Register, you agree to our <a class="text-primary hover:underline" href="#">Terms of Engineering
+                Service</a> and <a class="text-primary hover:underline" href="#">Data Integrity Protocol</a>.
+            </div>
+            <button
+              class="w-full py-3 bg-primary-container text-on-primary font-headline-sm text-headline-sm rounded-lg hover:bg-[#004bb1] active:opacity-90 transition-all mt-4"
+              type="submit">
+              CREATE PROFILE
+            </button>
+          </form>
+        </div>
+      }
       <!-- Social Authentication -->
       <div class="mt-8">
         <div class="relative flex items-center mb-6">

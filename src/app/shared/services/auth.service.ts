@@ -8,7 +8,12 @@ import { GoogleClientId } from '../../shared/config';
 
 const API_AUTH_URL = `${environment.apiURL}/auth`;
 
-declare const google: any;
+// declare const google: any;
+declare global {
+  interface Window {
+    google: any;
+  }
+}
 
 @Injectable({
   providedIn: 'root',
@@ -56,15 +61,46 @@ export class AuthService {
   }
   
 
-  initializeGoogleSignIn() {
-    google.accounts.id.initialize({
+  // initializeGoogleSignIn() {
+  //   google.accounts.id.initialize({
+  //     client_id: GoogleClientId,
+  //     callback: (response: any) => this.handleCredential(response)
+  //   });
+    
+  //   google.accounts.id.prompt(); // Display the One Tap prompt automatically on page load
+    
+  //   return google;
+  // }
+
+  initializeGoogleSignIn(): Promise<any> {
+    return new Promise((resolve, reject) => {
+
+      // Already loaded
+      if (window.google?.accounts?.id) {
+        this.initializeGoogleClient();
+        resolve(window.google);
+        return;
+      }
+
+      // Google GIS script is not loaded yet
+      const checkGoogle = () => {
+        if (window.google?.accounts?.id) {
+          this.initializeGoogleClient();
+          resolve(window.google);
+        } else {
+          setTimeout(checkGoogle, 50);
+        }
+      };
+
+      checkGoogle();
+    });
+  }
+
+  private initializeGoogleClient(): void {
+    window.google.accounts.id.initialize({
       client_id: GoogleClientId,
       callback: (response: any) => this.handleCredential(response)
     });
-    
-    google.accounts.id.prompt(); // Display the One Tap prompt automatically on page load
-    
-    return google;
   }
 
   handleCredential(response: any) {
@@ -87,22 +123,23 @@ export class AuthService {
       })
   }
 
-    isTokenExpired(): boolean {
-      const token = localStorage.getItem("accessToken");
-      if (!token) return true;
+  isTokenExpired(): boolean {
+    const token = localStorage.getItem("accessToken");
+    if (!token) return true;
 
-      try {
-        const decoded: any = jwtDecode(token);
-        const exp = decoded.exp;
-        const now = Math.floor(Date.now() / 1000);
-        return exp < now;
-      } catch (e) {
-        return true; // treat invalid token as expired
-      }
+    try {
+      const decoded: any = jwtDecode(token);
+      const exp = decoded.exp;
+      const now = Math.floor(Date.now() / 1000);
+      return exp < now;
+    } catch (e) {
+      return true; // treat invalid token as expired
     }
+  }
 
   signOut() {
-    google.accounts.id.disableAutoSelect();
+    // google.accounts.id.disableAutoSelect();
+    window.google.accounts.id.disableAutoSelect();
 
     // this.http.post(`${APIPREFIX}/logout`, this.userInfo()).pipe(take(1)).subscribe();
     // Sto backend gia logout
