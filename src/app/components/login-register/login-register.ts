@@ -57,24 +57,47 @@ export class LoginRegister {
   // }
 
   async ngOnInit() {
-    const google = await this.authService.initializeGoogleSignIn();
+    this.googleInitialize();
+    // console.log('ngOnInit called. Initializing Google Sign-In button.');
+    // const google = await this.authService.initializeGoogleSignIn();
 
-    const googleButton = document.getElementById('googleBtn');
+    // const googleButton = document.getElementById('googleBtn');
 
-    if (googleButton) {
-      google.accounts.id.renderButton(
-        googleButton,
-        {
-          theme: 'outline',
-          size: 'large',
-          shape: 'rectangular',
-          logo_alignment: 'center',
-          width: 400
-        }
-      );
-    }
+    // if (googleButton) {
+    //   google.accounts.id.renderButton(
+    //     googleButton,
+    //     {
+    //       theme: 'outline',
+    //       size: 'large',
+    //       shape: 'rectangular',
+    //       logo_alignment: 'center',
+    //       width: "50%"
+    //     }
+    //   );
+    // }
   }
 
+  googleInitialize() {
+    console.log('Google Sign-In button initialization started.');
+    this.authService.initializeGoogleSignIn().then((google) => {
+      const googleButton = document.getElementById('googleBtn');
+      if (googleButton) {
+        google.accounts.id.renderButton(
+          googleButton,
+          {
+            theme: 'outline',
+            size: 'large',
+            shape: 'rectangular',
+            logo_alignment: 'center',
+            width: "50%"
+          }
+        );
+      }
+    }).catch((error) => {
+      console.error('Error initializing Google Sign-In:', error);
+    });
+  }
+  
   passwordMatchValidator(control: AbstractControl): { [key: string]: boolean } | null {
     // console.log('Validating password match');
     const form = control as FormGroup
@@ -141,6 +164,10 @@ export class LoginRegister {
   switchView(viewType: 'login' | 'signup') {
     this.newUser = viewType === 'signup';
     console.log(`Switched to ${viewType} view. newUser is now:`, this.newUser);
+    if (viewType === 'login') {
+      this.signUpForm.reset();
+      this.googleInitialize();
+    }
   }
 
   // toggleView() {
