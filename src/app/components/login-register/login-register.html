@@ -1,8 +1,13 @@
 <main class="flex-grow flex items-center justify-center p-gutter relative overflow-hidden">
   <!-- Technical Background Decoration -->
   <div class="absolute inset-0 pointer-events-none opacity-[0.03] overflow-hidden">
-    <div class="absolute top-0 left-0 w-full h-full"
-      style="background-image: radial-gradient(#0057cd 1px, transparent 1px); background-size: 32px 32px;"></div>
+    <div
+      class="absolute top-0 left-0 w-full h-full"
+      style="
+        background-image: radial-gradient(#0057cd 1px, transparent 1px);
+        background-size: 32px 32px;
+      "
+    ></div>
   </div>
   <div class="w-full max-w-md z-10">
     <!-- Auth Container -->
@@ -41,33 +46,45 @@
         <div class="transition-view active-view" id="login-view">
           <div class="mb-6">
             <h2 class="font-headline-md text-headline-md text-on-surface mb-2">Welcome Back</h2>
-            <p class="text-secondary font-body-md">Enter your credentials to access the workspace.</p>
+            <p class="text-secondary font-body-md">
+              Enter your credentials to access the workspace.
+            </p>
           </div>
-          <form class="space-y-4" onsubmit="event.preventDefault();">
+          <form class="space-y-4" [formGroup]="loginForm">
             <div>
-              <label class="block font-label-sm text-label-sm text-secondary uppercase mb-1">Email</label>
+              <label class="block font-label-sm text-label-sm text-secondary uppercase mb-1"
+                >Email</label
+              >
               <input
-                class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant rounded font-label-md focus:ring-0" type="email" />
+                class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant rounded font-label-md focus:ring-0"
+                type="email"
+                formControlName = "email"
+              />
             </div>
             <div>
               <div class="flex justify-between items-center mb-1">
-                <label class="block font-label-sm text-label-sm text-secondary uppercase">Password</label>
-                <a class="text-primary font-label-sm text-label-sm hover:underline" href="#">FORGOT PASSWORD?</a>
+                <label class="block font-label-sm text-label-sm text-secondary uppercase"
+                  >Password</label
+                >
+                <a class="text-primary font-label-sm text-label-sm hover:underline" href="#"
+                  >FORGOT PASSWORD?</a
+                >
               </div>
               <input
-                class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant rounded font-label-md focus:ring-0" type="password" />
+                class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant rounded font-label-md focus:ring-0"
+                type="password"
+                formControlName = "password"
+              />
             </div>
-            <!-- <div class="flex items-center gap-2 pt-2">
-              <input class="w-4 h-4 text-primary border-outline-variant rounded focus:ring-primary" id="remember"
-                type="checkbox" />
-              <label class="font-label-md text-label-md text-on-surface-variant" for="remember">Keep me authenticated for
-                24 hours</label>
-            </div> -->
-            <!-- <button
+            <button
               class="w-full py-3 bg-primary-container text-on-primary font-headline-sm text-headline-sm rounded-lg hover:bg-[#004bb1] active:opacity-90 transition-all mt-4"
-              type="submit">
-              SECURE LOGIN
-            </button> -->
+              type="button"
+              [disabled]="loginForm.invalid"
+              (click)="loginWithEmail(loginForm.value)"
+            >
+              SUBMIT
+            </button>
+            
             <div class="flex items-center justify-center gap-4 py-3">
               <span>OR</span>
             </div>
@@ -81,43 +98,85 @@
         <div class="transition-view hidden-view" id="register-view">
           <div class="mb-6">
             <h2 class="font-headline-md text-headline-md text-on-surface mb-2">New Account</h2>
-            <p class="text-secondary font-body-md">Register your technical profile for the bridge structural foundation
-              suite.</p>
+            <p class="text-secondary font-body-md">
+              Register your technical profile for the bridge structural foundation suite.
+            </p>
           </div>
-          <form class="space-y-4" onsubmit="event.preventDefault();">
+          <form class="space-y-4" [formGroup]="signUpForm">
             <div class="grid grid-cols-2 gap-4">
               <div>
-                <label class="block font-label-sm text-label-sm text-secondary uppercase mb-1">First Name</label>
+                <label class="block font-label-sm text-label-sm text-secondary uppercase mb-1"
+                  >First Name</label
+                >
                 <input
                   class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant rounded font-label-md focus:ring-0"
-                  type="text" />
+                  type="text"
+                  formControlName="firstname"
+                />
               </div>
               <div>
-                <label class="block font-label-sm text-label-sm text-secondary uppercase mb-1">Last Name</label>
+                <label class="block font-label-sm text-label-sm text-secondary uppercase mb-1"
+                  >Last Name</label
+                >
                 <input
                   class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant rounded font-label-md focus:ring-0"
-                  type="text" />
+                  type="text"
+                  formControlName="lastname"
+                />
               </div>
             </div>
             <div>
-              <label class="block font-label-sm text-label-sm text-secondary uppercase mb-1">Corporate Email</label>
+              <label class="block font-label-sm text-label-sm text-secondary uppercase mb-1"
+                >Corporate Email</label
+              >
               <input
                 class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant rounded font-label-md focus:ring-0"
-                placeholder="name@company.com" type="email" />
+                placeholder="name@company.com"
+                type="email"
+                formControlName="email"
+              />
             </div>
             <div>
-              <label class="block font-label-sm text-label-sm text-secondary uppercase mb-1">Create Access Key</label>
+              <label class="block font-label-sm text-label-sm text-secondary uppercase mb-1"
+                >Create Access Key</label
+              >
               <input
                 class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant rounded font-label-md focus:ring-0"
-                placeholder="••••••••" type="password" />
+                placeholder="••••••••"
+                type="password"
+                formControlName="password"
+              />
+              @if(signUpForm.get('password')?.touched && signUpForm.get('password')?.hasError('minlength')) {
+                <div class="text-red-500 mt-1">Password must be at least 8 characters long</div>
+              }
+            </div>
+            <div>
+              <label class="block font-label-sm text-label-sm text-secondary uppercase mb-1"
+                >Confirm Access Key</label
+              >
+              <input
+                class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant rounded font-label-md focus:ring-0"
+                placeholder="••••••••"
+                type="password"
+                formControlName="confirmPassword"
+              />
+              
+              @if(signUpForm.get('confirmPassword')?.hasError('passwordMismatch') &&
+                signUpForm.get('confirmPassword')?.touched) {
+                <div class="text-red-500 mt-1">Passwords do not match</div>
+              }
             </div>
             <div class="text-[11px] text-secondary leading-relaxed pt-2">
-              By clicking Register, you agree to our <a class="text-primary hover:underline" href="#">Terms of Engineering
-                Service</a> and <a class="text-primary hover:underline" href="#">Data Integrity Protocol</a>.
+              By clicking Register, you agree to our
+              <a class="text-primary hover:underline" href="#">Terms of Engineering Service</a> and
+              <a class="text-primary hover:underline" href="#">Data Integrity Protocol</a>.
             </div>
             <button
               class="w-full py-3 bg-primary-container text-on-primary font-headline-sm text-headline-sm rounded-lg hover:bg-[#004bb1] active:opacity-90 transition-all mt-4"
-              type="submit">
+              type="button"
+              [disabled]="signUpForm.invalid"
+              (click)="signUpFormSubmit(signUpForm.value)"
+            >
               CREATE PROFILE
             </button>
           </form>
@@ -152,15 +211,21 @@
       </div> -->
       <div class="flex items-center gap-6">
         <div
-          class="w-12 h-12 rounded-full overflow-hidden border border-outline-variant bg-surface-container-high flex items-center justify-center">
-          <img class="w-full h-full object-cover"
+          class="w-12 h-12 rounded-full overflow-hidden border border-outline-variant bg-surface-container-high flex items-center justify-center"
+        >
+          <img
+            class="w-full h-full object-cover"
             data-alt="A portrait of a senior civil engineer wearing a hard hat, with a blueprint in the background, in a professional and technical photography style, using soft blue and white lighting to match a modern corporate aesthetic."
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDwy3ZYpMuPJREJzQ19V8u2DXUMbEcLwGNSBNsOYiixnaQNGDQiYwqPEOlfwzwLiAv1AuobYDeIcWdj879-G_AtyYospyWqmcwI45JWjzDLjocKYLmag9WWVd0qGDh7IzsxxDM3a521hv3nm5DSEzour33QVXEJxFymyGU70ubb9dPbD32Ui_ZASRp1-AygJ3uV_J3Dh-TKcU4SOKAwqa7pYlQri8s3yhbHhplb_3aXMtfU0haF9CHpM8a_gw_K-gNIiP3qnZxPn0" />
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDwy3ZYpMuPJREJzQ19V8u2DXUMbEcLwGNSBNsOYiixnaQNGDQiYwqPEOlfwzwLiAv1AuobYDeIcWdj879-G_AtyYospyWqmcwI45JWjzDLjocKYLmag9WWVd0qGDh7IzsxxDM3a521hv3nm5DSEzour33QVXEJxFymyGU70ubb9dPbD32Ui_ZASRp1-AygJ3uV_J3Dh-TKcU4SOKAwqa7pYlQri8s3yhbHhplb_3aXMtfU0haF9CHpM8a_gw_K-gNIiP3qnZxPn0"
+          />
         </div>
         <div class="text-left">
-          <p class="font-label-md text-label-md text-on-surface">"Precision and stability are the pillars of
-            Metro-Bridge architecture."</p>
-          <p class="font-label-sm text-label-sm text-secondary uppercase">— Marcus V., Lead Structural Engineer</p>
+          <p class="font-label-md text-label-md text-on-surface">
+            "Precision and stability are the pillars of Metro-Bridge architecture."
+          </p>
+          <p class="font-label-sm text-label-sm text-secondary uppercase">
+            — Marcus V., Lead Structural Engineer
+          </p>
         </div>
       </div>
     </div>

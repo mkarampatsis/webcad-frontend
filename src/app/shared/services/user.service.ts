@@ -24,6 +24,6 @@ export class UserService {
   }   
   
   registerUser(userData: Partial<IRegisterUser>) {
-    return this.http.post<IUser>(`${environment.apiURL}/user/register`, userData);
+    return this.http.post<IUser>(`${environment.apiURL}/user`, userData);
   }  
 }
