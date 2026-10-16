@@ -50,9 +50,15 @@
       data-icon="search">search</button> -->
     <div
       class="w-10 h-10 rounded-full border border-outline-variant overflow-hidden cursor-pointer active:opacity-80 bg-surface-container">
-      <img class="w-full h-full object-cover"
+      <!-- <img class="w-full h-full object-cover"
         data-alt="A professional portrait of a civil engineer in a light-filled modern office environment. The image is crisp and bright, with a shallow depth of field. Soft sunlight reflects off clean glass surfaces in the background, creating a high-end corporate atmosphere. The person wears business casual attire, embodying precision and leadership."
-        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYuvuey2aVdRh7_jlK6TuFDs54UXB2TthHyjHTdN-El-ZLhb2nEHG4kfl9x1IkLGH2YnSOgY4PiRfq2UcS-_gKLPI9gYtueGfdZW5Lsx5zL55rIGsxfcvBA39FTDXeoAZG856PWbv3rOaJyvoK08Lnuqd5CeyzJ4FIbmaIU6bj9IorFfvPZN19eHLWUBgcqHw4b867u-3ri9Cnoe8s7owGl7eI5jUe5qpiqNeRO3s9uFJGRTNZK6JqRNUFE9VHx6eO7ROmBfg6CBk" />
+        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYuvuey2aVdRh7_jlK6TuFDs54UXB2TthHyjHTdN-El-ZLhb2nEHG4kfl9x1IkLGH2YnSOgY4PiRfq2UcS-_gKLPI9gYtueGfdZW5Lsx5zL55rIGsxfcvBA39FTDXeoAZG856PWbv3rOaJyvoK08Lnuqd5CeyzJ4FIbmaIU6bj9IorFfvPZN19eHLWUBgcqHw4b867u-3ri9Cnoe8s7owGl7eI5jUe5qpiqNeRO3s9uFJGRTNZK6JqRNUFE9VHx6eO7ROmBfg6CBk" /> -->
+        @if (this.user()) {
+          <img class="w-full h-full object-cover" [src]="user()!.photoUrl" alt="user photo" />
+        } @else {
+          <span class="material-symbols-outlined">login</span>
+        }
+        
     </div>
   </div>
 </header>

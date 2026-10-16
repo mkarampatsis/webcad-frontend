@@ -5,9 +5,12 @@ export interface IRoles {
 }
 
 export interface IUser {
+  googleId?: string;
   userId: string;
   email: string;
-  name: string;
+  firstName?: string;
+  lastName?: string;
+  fullname: string;
   photoUrl: string;
   roles: IRoles[];
 }

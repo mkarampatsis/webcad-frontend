@@ -1,7 +1,7 @@
-import { effect, inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { IUser } from '../interfaces/user';
+import { IUser } from 'src/app/shared/interfaces/user';
 import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 import { GoogleClientId } from '../../shared/config';
@@ -32,7 +32,7 @@ export class AuthService {
       this.user.set({
         userId: decodedTokenSubject.userId,
         email: decodedTokenSubject.email,
-        name: decodedTokenSubject.name,
+        fullname: decodedTokenSubject.fullname,
         photoUrl: decodedTokenSubject.photoUrl,
         roles: decodedTokenSubject.roles
       });

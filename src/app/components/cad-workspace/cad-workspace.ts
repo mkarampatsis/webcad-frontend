@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, inject } from '@angular/core';
 import { LeftSidebar } from './left-sidebar/left-sidebar';
-import { RightSidebar } from './right-sidebar/right-sidebar';
+// import { RightSidebar } from './right-sidebar/right-sidebar';
 import { SkycivRendererService } from 'src/app/shared/services/skyciv-renderer.service';
 import { SkyCivInitializationService } from 'src/app/shared/services/skyciv-initialization.service';
 import { SkyCivModelNormalizerService } from 'src/app/shared/services/skyciv-model-normalizer.service';
@@ -13,7 +13,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-cad-workspace',
-  imports: [LeftSidebar, RightSidebar, ReactiveFormsModule],
+  imports: [LeftSidebar, ReactiveFormsModule],
   templateUrl: './cad-workspace.html',
   styleUrl: './cad-workspace.css',
 })
