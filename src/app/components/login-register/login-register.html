@@ -17,32 +17,32 @@
         <button
           class="flex-1 pb-4 font-label-md text-label-md transition-colors duration-200 cursor-pointer"
           (click)="switchView('login')"
-          [class.border-primary]="!newUser"
-          [class.border-b-2]="!newUser"
-          [class.border-transparent]="newUser"
-          [class.text-primary]="!newUser"
-          [class.text-secondary]="newUser"
-          [class.hover:text-primary]="newUser"
-          [class.font-bold]="!newUser"
+          [class.border-primary]="!newUser()"
+          [class.border-b-2]="!newUser()"
+          [class.border-transparent]="newUser()"
+          [class.text-primary]="!newUser()"
+          [class.text-secondary]="newUser()"
+          [class.hover:text-primary]="newUser()"
+          [class.font-bold]="!newUser()"
         >
           LOG IN
         </button>
         <button
           class="flex-1 pb-4 font-label-md text-label-md transition-colors duration-200 cursor-pointer"
           (click)="switchView('signup')"
-          [class.border-primary]="newUser"
-          [class.border-b-2]="newUser"
-          [class.border-transparent]="!newUser"
-          [class.text-primary]="newUser"
-          [class.text-secondary]="!newUser"
-          [class.hover:text-primary]="!newUser"
-          [class.font-bold]="newUser"
+          [class.border-primary]="newUser()"
+          [class.border-b-2]="newUser()"
+          [class.border-transparent]="!newUser()"
+          [class.text-primary]="newUser()"
+          [class.text-secondary]="!newUser()"
+          [class.hover:text-primary]="!newUser()"
+          [class.font-bold]="newUser()"
         >
           REGISTER
         </button>
       </div>
       <!-- Login View -->
-      @if (!newUser) {
+      @if (!newUser()) {
         <div class="transition-view active-view" id="login-view">
           <div class="mb-6">
             <h2 class="font-headline-md text-headline-md text-on-surface mb-2">Welcome Back</h2>

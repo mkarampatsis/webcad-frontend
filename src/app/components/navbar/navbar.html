@@ -36,8 +36,9 @@
     </a>
     <a 
       class="text-on-surface-variant hover:bg-secondary-container transition-colors px-3 py-1 rounded cursor-pointer"
-     routerLink="login"
-     routerLinkActive="text-primary font-bold transition-colors cursor-pointer active:opacity-80">Register
+      routerLink="login"
+      (click)="loginPage('signup')"
+      routerLinkActive="text-primary font-bold transition-colors cursor-pointer active:opacity-80">Register
     </a>
     <a 
       class="text-on-surface-variant hover:bg-secondary-container transition-colors px-3 py-1 rounded cursor-pointer"
@@ -45,20 +46,20 @@
       routerLinkActive="text-primary font-bold transition-colors cursor-pointer active:opacity-80">Contact
     </a>
   </nav>
-  <div class="flex items-center gap-4">
-    <!-- <button class="material-symbols-outlined text-on-surface-variant p-2 hover:bg-secondary-container rounded-full"
-      data-icon="search">search</button> -->
-    <div
-      class="w-10 h-10 rounded-full border border-outline-variant overflow-hidden cursor-pointer active:opacity-80 bg-surface-container">
-      <!-- <img class="w-full h-full object-cover"
-        data-alt="A professional portrait of a civil engineer in a light-filled modern office environment. The image is crisp and bright, with a shallow depth of field. Soft sunlight reflects off clean glass surfaces in the background, creating a high-end corporate atmosphere. The person wears business casual attire, embodying precision and leadership."
-        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYuvuey2aVdRh7_jlK6TuFDs54UXB2TthHyjHTdN-El-ZLhb2nEHG4kfl9x1IkLGH2YnSOgY4PiRfq2UcS-_gKLPI9gYtueGfdZW5Lsx5zL55rIGsxfcvBA39FTDXeoAZG856PWbv3rOaJyvoK08Lnuqd5CeyzJ4FIbmaIU6bj9IorFfvPZN19eHLWUBgcqHw4b867u-3ri9Cnoe8s7owGl7eI5jUe5qpiqNeRO3s9uFJGRTNZK6JqRNUFE9VHx6eO7ROmBfg6CBk" /> -->
-        @if (this.user()) {
-          <img class="w-full h-full object-cover" [src]="user()!.photoUrl" alt="user photo" />
-        } @else {
-          <span class="material-symbols-outlined">login</span>
-        }
+  <div class="group relative w-10 h-10 rounded-full border border-outline-variant cursor-pointer active:opacity-80 bg-surface-container flex items-center justify-center">
+    @if (this.user()) {
+      <img class="w-full h-full object-cover overflow-hidden" [src]="user()!.photoUrl" alt="user photo" />
+    } @else {
+      <span class="material-symbols-outlined" routerLink="login" (click)="loginPage('login')">login</span>
+
+      <span class="absolute top-full left-1/2 -translate-x-1/2 mt-2
+        invisible opacity-0 group-hover:visible group-hover:opacity-100
+        transition-opacity duration-200
+        whitespace-nowrap rounded-lg bg-secondary-container px-2 py-1
+        text-xs text-on-surface-variant z-50 pointer-events-none">
+      Login
+    </span>
+    }
         
-    </div>
   </div>
 </header>

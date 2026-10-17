@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   ReactiveFormsModule,
@@ -10,6 +10,7 @@ import {
 import { jwtDecode } from 'jwt-decode';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { UserService } from 'src/app/shared/services/user.service';
+import { LoginService } from 'src/app/shared/services/login.service';
 
 declare let google: any;
 
@@ -22,9 +23,10 @@ declare let google: any;
 export class LoginRegister {
   authService = inject(AuthService);
   userService = inject(UserService);
+  loginService = inject(LoginService)
   user = this.authService.user;
 
-  newUser: boolean = false;
+  newUser = this.loginService.newUser;
 
   loginForm = new FormGroup({
     email: new FormControl(''),
@@ -82,7 +84,7 @@ export class LoginRegister {
   }
 
   signUp() {
-    this.newUser = true;
+    this.newUser.set(true);
   }
 
   loginWithEmail(value: Partial<{ email: string | null; password: string | null }>) {
@@ -124,7 +126,7 @@ export class LoginRegister {
         next: (res) => {
           // console.log('User registered successfully', res);
           this.signUpForm.reset();
-          this.newUser = false;
+          this.newUser.set(false);
         },
         error: (err) => console.error('User registration error', err),
       });
@@ -132,11 +134,11 @@ export class LoginRegister {
 
   resetsignUpForm() {
     this.signUpForm.reset();
-    this.newUser = false;
+    this.newUser.set(false);
   }
 
   switchView(viewType: 'login' | 'signup') {
-    this.newUser = viewType === 'signup';
+    this.newUser.set(viewType === 'signup');
     console.log(`Switched to ${viewType} view. newUser is now:`, this.newUser);
     if (viewType === 'login') {
       this.signUpForm.reset();
