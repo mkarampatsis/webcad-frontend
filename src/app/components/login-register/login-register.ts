@@ -99,7 +99,7 @@ export class LoginRegister {
           // console.log('Login successful', res);
           const decodedToken = jwtDecode(res.token);
           this.authService.user.set(decodedToken as any);
-          localStorage.setItem('accessToken', res.token);
+          localStorage.setItem('access_token', res.token);
           this.authService.router.navigate(['/than-cad']);
         },
         error: (err) => console.error('Login error', err),

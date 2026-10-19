@@ -10,10 +10,10 @@ import { LoginService } from 'src/app/shared/services/login.service';
   styleUrl: './navbar.css',
 })
 export class Navbar {
-  authService = inject(AuthService)
+  authService = inject(AuthService);
   loginService = inject(LoginService);
 
-  user = this.authService.user
+  user = this.authService.user;
 
   loginPage(type: string){
     this.loginService.newUser.set(type==='signup')

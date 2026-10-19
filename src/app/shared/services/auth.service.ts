@@ -57,6 +57,7 @@ export class AuthService {
   logout() {
     this.user.set(null);
     localStorage.removeItem('access_token');
+    window.google.accounts.id.disableAutoSelect();
     this.router.navigate(['/login']);
   }
   
@@ -115,7 +116,7 @@ export class AuthService {
           // console.log('Backend login success', res)
           const decodedToken = jwtDecode(res.token) as IUser;
           this.user.set(decodedToken);
-          localStorage.setItem('accessToken', res.token);
+          localStorage.setItem('access_token', res.token);
           // console.log('Decoded token:', decodedToken);
           this.router.navigate(['/than-cad']);
         },
@@ -124,7 +125,7 @@ export class AuthService {
   }
 
   isTokenExpired(): boolean {
-    const token = localStorage.getItem("accessToken");
+    const token = localStorage.getItem("access_token");
     if (!token) return true;
 
     try {
@@ -148,7 +149,7 @@ export class AuthService {
 
   removeUser(){
     this.user.set(null);
-    localStorage.removeItem('accessToken');
+    localStorage.removeItem('access_token');
     this.router.navigate(['/login']);
   }
 }
