@@ -10,6 +10,11 @@ import { SkycivRenderer } from 'src/app/components/skyciv-renderer/skyciv-render
 
 import { authGuard } from './shared/guards/auth-guard';
 import { adminRoleGuard } from './shared/guards/user-role-guard';
+import { UserProjects } from './components/user-projects/user-projects';
+import { UserAdmin } from './components/user-admin/user-admin';
+import { UserRoles } from './components/user-roles/user-roles';
+import { LogData } from './components/log-data/log-data';
+import { HelpBox } from './components/help-box/help-box';
 
 export const routes: Routes = [
   { path: '', component: Landing,     canActivate: [authGuard, adminRoleGuard],
@@ -21,4 +26,11 @@ export const routes: Routes = [
   { path: 'cad-workspace', component: CadWorkspace },
   { path: 'than-cad', component: ThanCad },
   { path: 'skyciv-renderer', component: SkycivRenderer },
+  { path: 'log-data', component: LogData},
+  { path: 'help-box', component: HelpBox},
+
+  // user routes
+  { path: 'user-projects', component: UserProjects},
+  { path: 'user-admin', component: UserAdmin},
+  { path: 'user-roles', component: UserRoles},
 ];

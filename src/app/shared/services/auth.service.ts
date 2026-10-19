@@ -54,7 +54,8 @@ export class AuthService {
     return this.http.post<{token:string}>(`${API_AUTH_URL}/login`,{credentials});
   }
 
-  logout() {
+  logoutUser() {
+    console.log("Service logout")
     this.user.set(null);
     localStorage.removeItem('access_token');
     window.google.accounts.id.disableAutoSelect();

@@ -11,8 +11,12 @@
   <div class="flex flex-col gap-1 w-full">
     <!-- Properties Item (Active) -->
     <a
-      class="flex items-center flex-row-reverse w-full min-h-[48px] bg-primary-container text-on-primary-container dark:bg-primary dark:text-on-primary group transition-all duration-200 ease-out"
-      href="#"
+      /* class="flex items-center flex-row-reverse w-full min-h-[48px] bg-primary-container text-on-primary-container dark:bg-primary dark:text-on-primary group transition-all duration-200 ease-out" */
+      class="flex items-center flex-row-reverse w-full min-h-[48px] text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-highest dark:hover:bg-surface-variant transition-all duration-200 ease-out group"
+      routerLinkActive="bg-primary-container text-on-primary-container dark:bg-primary dark:text-on-primary "
+      [routerLinkActiveOptions]="{ exact: true }"
+      routerLink="/user-projects"
+      
     >
       <div class="w-12 h-12 flex items-center justify-center shrink-0">
         <span class="material-symbols-outlined">settings_input_component</span>
@@ -23,8 +27,10 @@
       >
     </a>
     <a
-      class="flex items-center flex-row-reverse w-full min-h-[48px] text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-highest dark:hover:bg-surface-variant transition-all duration-200 ease-out"
-      href="#"
+      class="flex items-center flex-row-reverse w-full min-h-[48px] text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-highest dark:hover:bg-surface-variant transition-all duration-200 ease-out group"
+      routerLinkActive="bg-primary-container text-on-primary-container dark:bg-primary dark:text-on-primary "
+      [routerLinkActiveOptions]="{ exact: true }"
+      routerLink="/user-admin"
     >
       <div class="w-12 h-12 flex items-center justify-center shrink-0">
         <span class="material-symbols-outlined">manage_accounts</span>
@@ -35,8 +41,10 @@
       >
     </a>
     <a
-      class="flex items-center flex-row-reverse w-full min-h-[48px] text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-highest dark:hover:bg-surface-variant transition-all duration-200 ease-out"
-      href="#"
+      class="flex items-center flex-row-reverse w-full min-h-[48px] text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-highest dark:hover:bg-surface-variant transition-all duration-200 ease-out group"
+      routerLinkActive="bg-primary-container text-on-primary-container dark:bg-primary dark:text-on-primary "
+      [routerLinkActiveOptions]="{ exact: true }"
+      routerLink="/user-roles"
     >
       <div class="w-12 h-12 flex items-center justify-center shrink-0">
         <span class="material-symbols-outlined">accessibility_new</span>
@@ -47,8 +55,10 @@
       >
     </a>
     <a
-      class="flex items-center flex-row-reverse w-full min-h-[48px] text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-highest dark:hover:bg-surface-variant transition-all duration-200 ease-out"
-      href="#"
+      class="flex items-center flex-row-reverse w-full min-h-[48px] text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-highest dark:hover:bg-surface-variant transition-all duration-200 ease-out group"
+      routerLinkActive="bg-primary-container text-on-primary-container dark:bg-primary dark:text-on-primary "
+      [routerLinkActiveOptions]="{ exact: true }"
+      routerLink="/log-data"
     >
       <div class="w-12 h-12 flex items-center justify-center shrink-0">
         <span class="material-symbols-outlined">history</span>
@@ -59,8 +69,10 @@
       >
     </a>
     <a
-      class="flex items-center flex-row-reverse w-full min-h-[48px] text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-highest dark:hover:bg-surface-variant transition-all duration-200 ease-out"
-      href="#"
+      class="flex items-center flex-row-reverse w-full min-h-[48px] text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-highest dark:hover:bg-surface-variant transition-all duration-200 ease-out group"
+      routerLinkActive="bg-primary-container text-on-primary-container dark:bg-primary dark:text-on-primary "
+      [routerLinkActiveOptions]="{ exact: true }"
+      routerLink="/help-box"
     >
       <div class="w-12 h-12 flex items-center justify-center shrink-0">
         <span class="material-symbols-outlined">help_center</span>
@@ -71,14 +83,14 @@
       >
     </a>
     <a
-      class="flex items-center flex-row-reverse w-full min-h-[48px] text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-highest dark:hover:bg-surface-variant transition-all duration-200 ease-out"
-      href="#"
+      class="flex items-center flex-row-reverse w-full min-h-[48px] text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-highest dark:hover:bg-surface-variant transition-all duration-200 ease-out cursor-pointer"
+      (click) = "onLogout()"
     >
       <div class="w-12 h-12 flex items-center justify-center shrink-0">
         <span class="material-symbols-outlined">logout</span>
       </div>
       <span
-        class="font-label-md text-label-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap w-full text-right px-4"
+        class="font-label-md text-label-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap w-full text-right px-4"        
         >Logout</span
       >
     </a>    
